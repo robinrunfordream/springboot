@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+
+	<script src="js/jquery-3.6.0.min.js" th:src="@{js/jquery-3.6.0.min.js}"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+	<script src="js/bootstrap.min.js" th:src="@{js/bootstrap.min.js}"></script>
+		
+</head>
+
+<body>
+	<form action="/login" method="post">
+	        
+		<div class="row justify-content-center align-items-center">
+			<div class="col-12 text-center">
+				<h3>使用者登入</h3>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center align-items-center">
+			<div class="col-12 text-center">
+				<span style="color:red" th:if="${param.error}" th:text="帳號或密碼輸入錯誤，請重新輸入" id="lab"></span>
+			</div>
+		</div>
+		
+		<br>
+				
+		<div class="row justify-content-center align-items-center">
+			<div class="col-4 ">
+				<input type="text" class="form-control" size="10" name="username" placeholder="Username">
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="row justify-content-center align-items-center">
+			<div class="col-4 ">
+				<input type="password" class="form-control" name="password" placeholder="Password">
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="row justify-content-center align-items-center">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<div class="col-4 ">
+				<div class="icheck-primary">
+					<input type="checkbox" id="remember"/>
+					<label for="remember">
+						Remember Me
+					</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row justify-content-center align-items-center">
+			<div class="col-4 ">
+				<a role="button" class="btn btn-outline-primary " href="/addMemberPage" target="_self">我要註冊</a>
+			</div>
+		</div>
+		
+		<br>
+		
+		<div class="row justify-content-center align-items-center">
+			<div class="col-4 align-items-center">
+				<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+			</div>
+		</div>
+		
+	</form>
+</body>
+</html>

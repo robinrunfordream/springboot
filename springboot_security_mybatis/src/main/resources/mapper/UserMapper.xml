@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.mapper.UserMapper">
+    <resultMap type="com.example.demo.entity.UserEntity" id="UserMapper">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="userPwd" column="userPwd" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="userEmail" column="userEmail" jdbcType="VARCHAR"/>
+        
+    </resultMap>
+    
+	<select id = "queryAllUsers" resultType="com.example.demo.entity.UserEntity">
+		select * from user
+	</select>
+	
+	<select id = "totalpage" resultType="Integer">
+		select COUNT(*) from user
+	</select>
+	
+	<select id = "pagePagination" resultType="com.example.demo.entity.UserEntity">
+		select * 
+		from user
+		limit #{startRecord},#{pageSize}
+	</select>
+  
+  	<select id="findByUserName" resultMap="UserMapper">
+		select id, username, userPwd, name, userEmail 
+		from user
+		where username = #{username}
+	</select>
+	
+  	<select id="findByName" resultMap="UserMapper">
+		select id, username, userPwd, name, userEmail 
+		from user 
+		where name = #{name}
+	</select>
+	
+  	<select id="findByUserEmail" resultMap="UserMapper">
+		select id, username, userPwd, name, userEmail 
+		from user 
+		where userEmail = #{userEmail}
+	</select>
+    
+	<insert id="add" parameterType="com.example.demo.entity.UserEntity">
+		INSERT INTO user(username, userPwd, name, userEmail)
+		VALUES(#{username}, #{userPwd}, #{name}, #{userEmail});
+	</insert>
+	
+
+</mapper>

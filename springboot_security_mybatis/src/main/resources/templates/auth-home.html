@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+	<script th:src="@{/bootstrap.min.js}"></script>
+	<script th:src="@{/jquery-3.6.0.min.js}"></script>
+</head>
+<body>
+	<!-- Default box -->
+	<div class="card">
+		<div class="card-header">
+			<h3 class="card-title">Hi!! <#if username??>${username}</#if> 歡迎認證成功</h3>
+			<div class="card-tools">
+				<button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+				<i class="fas fa-minus"></i></button>
+				<button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+				<i class="fas fa-times"></i></button>
+			</div>
+		</div>
+		<div class="card-body">
+			Your Role: 
+			<#list roles as role>    
+				${role}   
+			</#list>
+			<form action="/logout" method="post">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="submit" value="Logout">
+			</form>
+		</div>
+			<!-- /.card-body -->
+		<div class="card-footer">
+			Footer
+		</div>
+	<!-- /.card-footer-->
+	</div>
+	<!-- /.card -->
+</body>
+</html>
