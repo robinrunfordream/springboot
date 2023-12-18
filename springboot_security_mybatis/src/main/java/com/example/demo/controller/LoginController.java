@@ -34,6 +34,10 @@ public class LoginController {
     @Autowired
     private UserService userService;
     
+	@GetMapping(value = {"/","/home"})
+    public String home(){
+        return "home";
+    }
 	
 	@RequestMapping("/login")
 	public String loginForm(HttpServletRequest request, Model model) {
